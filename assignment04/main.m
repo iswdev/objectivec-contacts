@@ -16,6 +16,7 @@ const int ADD = 1;
 const int LIST = 2;
 const int SHOW = 5;
 const int EXIT = 3;
+const int FINDC = 6;
 const int INVALID = 4;
 
 int menu(InputCollector *input){
@@ -26,6 +27,7 @@ int menu(InputCollector *input){
     [input printToPrompt:@"new   - Add Contact"];
     [input printToPrompt:@"list  - List Contacts"];
     [input printToPrompt:@"show  - Show Contact info"];
+    [input printToPrompt:@"find  - Find Contact by name or email"];
     [input printToPrompt:@"quit  - Exit"];
     [input printToPrompt:@"====================="];
     
@@ -39,6 +41,9 @@ int menu(InputCollector *input){
     }
     if ([option isEqualToString:@"show"]){
         return SHOW;
+    }
+    if ([option isEqualToString:@"find"]){
+        return FINDC;
     }
     if ([option isEqualToString:@"quit"]){
         return EXIT;
@@ -76,6 +81,19 @@ void showContact(ContactList *contacts, InputCollector *input){
     [contact print: (int)number];
 }
 
+void findContact(ContactList *contacts, InputCollector *input){
+    int position = [contacts find: input];
+    if ( position == -1){
+        [input printToPrompt:@"Not found\n"];
+    }else{
+        Contact *contact = [contacts get:position];
+        [input printToPrompt:@"Contact found!"];
+        [contact print: (int)position];
+    }
+
+}
+
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
@@ -83,6 +101,7 @@ int main(int argc, const char * argv[]) {
         InputCollector *input = [InputCollector new];
         int option;
         Contact *contact;
+        int number;
         
         fillContacts(contacts);
         
@@ -102,11 +121,14 @@ int main(int argc, const char * argv[]) {
                 case SHOW:
                     showContact(contacts, input);
                     break;
+                case FINDC:
+                    findContact(contacts, input);
+                    break;
                 case INVALID:
                     [input printToPrompt:@"Invalid option"];
                     break;
             }
-            [input printToPrompt:@""];
+            [input printToPrompt:@"\n\n"];
         }
         [input printToPrompt:@"Good bye!"];
         

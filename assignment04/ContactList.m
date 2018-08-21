@@ -39,4 +39,19 @@
     return [self.list objectAtIndex:position];
 }
 
+- (int) find: (InputCollector *)input{
+    NSString *find = [[input inputForPrompt:@"Enter a search word:"] lowercaseString];
+    int count=0;
+    for (Contact *contact in self.list) {
+        if ([contact.name rangeOfString:[find lowercaseString]].location != NSNotFound){
+            return count;
+        }
+        if ([contact.email rangeOfString:[find lowercaseString]].location != NSNotFound){
+            return count;
+        }
+        count++;
+    }
+    return -1;
+}
+
 @end

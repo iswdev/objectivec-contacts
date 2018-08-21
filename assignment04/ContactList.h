@@ -23,4 +23,6 @@
 
 - (Contact *) get:(int) position;
 
+- (int) find: (InputCollector *)input;
+
 @end
