@@ -17,18 +17,26 @@
     return self;
 }
 
+- (int) count{
+    return (int)[self.list count];
+}
+
+
 - (void) addContact:(Contact *)contact{
     [_list addObject:contact];
     NSLog(@"Added: %@ %@",[contact name], [contact email]);
 }
 
 - (void) listContacts: (InputCollector *)input{
-    int count = 1;
+    int count = 0;
     for (Contact *contact in self.list) {
-        NSLog(@"%d: <%@> (%@)",count, contact.name, contact.email);
+        [contact print: count];
         count++;
     }
 }
 
+- (Contact *) get:(int) position{
+    return [self.list objectAtIndex:position];
+}
 
 @end

@@ -42,5 +42,9 @@
     
 }
 
+- (void) print: (int) position{
+    NSLog(@"%d: <%@> (%@)",position, self.name, self.email);
+}
+
 
 @end

@@ -15,8 +15,12 @@
 
 - (id) init;
 
+- (int) count;
+
 - (void) addContact:(Contact *)contact;
 
 - (void) listContacts: (InputCollector *)input;
+
+- (Contact *) get:(int) position;
 
 @end
