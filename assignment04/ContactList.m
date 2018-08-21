@@ -43,10 +43,10 @@
     NSString *find = [[input inputForPrompt:@"Enter a search word:"] lowercaseString];
     int count=0;
     for (Contact *contact in self.list) {
-        if ([contact.name rangeOfString:[find lowercaseString]].location != NSNotFound){
+        if ([[contact.name lowercaseString] rangeOfString:find].location != NSNotFound){
             return count;
         }
-        if ([contact.email rangeOfString:[find lowercaseString]].location != NSNotFound){
+        if ([[contact.email lowercaseString] rangeOfString:find].location != NSNotFound){
             return count;
         }
         count++;

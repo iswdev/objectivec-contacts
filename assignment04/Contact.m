@@ -22,7 +22,11 @@
     return _email;
 }
 
-
+- (instancetype) init{
+    [self setName:@""];
+    [self setEmail:@""];
+    return self;
+}
 
 - (void)setName:(NSString *)name{
     _name = name;

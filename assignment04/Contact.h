@@ -19,6 +19,7 @@
 
 - (NSString *)email;
 
+- (instancetype) init;
 
 - (void)setName:(NSString *)name;
 
